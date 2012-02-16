@@ -1,0 +1,25 @@
+{
+  "name"       : "whisky",
+  "version"    : "0.0.1",
+  "description": "Modularized client-side JavaScript framework",
+  "bin"        : {
+    "whisky": "./bin/whisky",
+    "wi"    : "./bin/whisky",
+  },
+  "keywords"    : [ "mvc", "client side mvc", "whisky", "coke" ],
+  "author"      : "dreamerslab <ben@dreamerslab.com>",
+  "dependencies": {},
+  "devDependencies": {
+    "cli-color"  : "0.1.6",
+    "node.flow"  : "1.1.0",
+    "node.packer": "0.0.6",
+    "should"     : "0.5.1"
+  },
+  "repository" : {
+    "type": "git",
+    "url" : "https://github.com/dreamerslab/whisky.git"
+  },
+  "main"   : "index",
+  "engines": [ "node >= 0.6.0" ],
+  "license": "MIT"
+}
