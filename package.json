@@ -6,7 +6,10 @@
     "whisky": "./bin/whisky",
     "wi"    : "./bin/whisky",
   },
-  "keywords"    : [ "mvc", "client side mvc", "whisky", "coke" ],
+  "keywords"    : [
+    "mvc", "client side mvc", "whisky", "coke",
+    "framework", "client-side framework", "mvc framework"
+  ],
   "author"      : "dreamerslab <ben@dreamerslab.com>",
   "dependencies": {},
   "devDependencies": {
