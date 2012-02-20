@@ -1,6 +1,6 @@
 /*!
  * WHISKY
- * Copyright(c) 2011 Ben Lin <ben@dreamerslab.com>
+ * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
  * @fileoverview
@@ -8,7 +8,14 @@
  * By John Resig http://ejohn.org/
  * MIT Licensed.
  */
-( function ( $$ ){
+
+/**
+ * Setup class builder module in a closure
+ * @this {window|global}
+ * @param {Object} root The global object, window or global.
+ * @param {Object} $$ WHISKY object.
+ */
+( function ( root, $$ ){
   var initializing = false;
   var fnTest       = /xyz/.test( function (){ xyz; }) ? /\b_super\b/ : /.*/;
 
@@ -72,4 +79,4 @@
 
 
   $$.Class = Class;
-})( WHISKY );
+})( this, WHISKY );

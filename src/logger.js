@@ -1,6 +1,6 @@
 /*!
  * WHISKY
- * Copyright(c) 2011 Ben Lin <ben@dreamerslab.com>
+ * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
  * @fileoverview
