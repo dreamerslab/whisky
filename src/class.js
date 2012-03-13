@@ -4,18 +4,12 @@
  * MIT Licensed
  *
  * @fileOverview
- * Simple JavaScript Inheritance
+ * Simple JavaScript Inheritance.
  * By John Resig http://ejohn.org/
  * MIT Licensed.
  */
 
-/**
- * Setup class builder module in a closure
- * @this {window|global}
- * @param {Object} root The global object, window or global.
- * @param {Object} $$ WHISKY object.
- */
-( function ( root, $$ ){
+$$( function ( require, exports ){
   var initializing = false;
   var fnTest       = /xyz/.test( function (){ xyz; }) ? /\b_super\b/ : /.*/;
 
@@ -76,5 +70,8 @@
     return Class;
   };
 
-  $$.Class = Class;
-})( this, WHISKY );
+/**
+ * Exports module.
+ */
+  exports( 'Class', Class );
+});
