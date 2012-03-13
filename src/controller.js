@@ -31,26 +31,37 @@ $$( function ( require, exports ){
  * @public
  */
   var Controller = Trunk.extend({
-    get : function ( name , options ){
-      return ( function ( controller, res ){
-        return function ( action, params, query ){
-          var req = {
-            params : params,
-            query : query,
-            session : session
-          };
 
-          if( controller[ action ] === undefined ){
-            return log( 'WHISKY::controller.get( name, options )( action, params, query ) `action` not defined', {
-              action : action,
+    _controller : function ( controller, res ){
+      var action = function ( action_name, params, query ){
+        var req = {
+          params : params,
+          query : query,
+          session : session
+        };
+
+        if( controller[ action_name ] === undefined ){
+          return log(
+            'WHISKY::controller.get( name, options )( action_name, params, query ) `action_name` not defined', {
+              action_name : action_name,
               params : params,
               query : query
             });
-          }
+        }
 
-          controller[ action ]( req, res );
-        };
-      })( new Class.extend( this._super( name ))( options ), new Response( name ));
+        controller[ action ]( req, res );
+      };
+
+      return action;
+    },
+
+    get : function ( name , options ){
+      var actions    = this._super( name );
+      var Controller = Class.extend( actions );
+      var controller = new Controller( options );
+      var res        = new Response( name );
+
+      return this._controller( controller, res );
     }
   });
 
@@ -59,3 +70,4 @@ $$( function ( require, exports ){
  */
   exports( 'controller', new Controller( 'WHISKY::controller' ));
 });
+
