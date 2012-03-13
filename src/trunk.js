@@ -3,14 +3,15 @@
  * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
- * @fileoverview
+ * @fileOverview
  * In memory data store class
  */
 
 $$.Trunk = $$.Class.extend({
 
 /**
- * Class constructor. Setup the default values.
+ * Setup the default values.
+ * @constructor
  * @this {$$.Trunk}
  * @param {String|Object} key Data key if arg is sting || Data set if arg is an object.
  * @param {String|Number|Array|Object|Function|null} val Data value.
