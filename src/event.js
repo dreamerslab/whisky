@@ -3,14 +3,15 @@
  * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
- * @fileoverview
+ * @fileOverview
  * Global events class.
  */
 
 $$.Event = $$.Class.extend({
 
 /**
- * Class constructor. Setup an evnet trunk.
+ * Setup an event trunk.
+ * @constructor
  * @this {$$.Event}
  * @returns {this} Return `this` to enable chaining.
  * @example
@@ -76,7 +77,7 @@ $$.Event = $$.Class.extend({
 
     var self = this;
 
-    return this.on( name, function (){
+    return this.on( name, function tmp(){
       fn.apply( this, arguments );
       self.remove( name, tmp );
     });
