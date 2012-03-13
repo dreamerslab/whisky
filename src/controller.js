@@ -32,36 +32,38 @@ $$( function ( require, exports ){
  */
   var Controller = Trunk.extend({
 
-    _controller : function ( controller, res ){
-      var action = function ( action_name, params, query ){
-        var req = {
-          params : params,
-          query : query,
-          session : session
-        };
-
-        if( controller[ action_name ] === undefined ){
-          return log(
-            'WHISKY::controller.get( name, options )( action_name, params, query ) `action_name` not defined', {
-              action_name : action_name,
-              params : params,
-              query : query
-            });
-        }
-
-        controller[ action ]( req, res );
+    action : function ( action_name, params, query ){
+      var controller = this.controller;
+      var req = {
+        params : params,
+        query : query,
+        session : session
       };
 
-      return action;
+      if( controller[ action_name ] === undefined ){
+        return log(
+          'WHISKY::Controller.action( action_name, params, query ) `action_name` not defined', {
+            action_name : action_name,
+            params : params,
+            query : query
+          });
+      }
+
+      controller[ action ]( req, this.res );
     },
 
     get : function ( name , options ){
+      var self       = this;
       var actions    = this._super( name );
       var Controller = Class.extend( actions );
-      var controller = new Controller( options );
-      var res        = new Response( name );
 
-      return this._controller( controller, res );
+      this.controller = new Controller( options );
+      this.res        = new Response( name );
+
+      // it's better to give it a wrapper to prevent `this` scope conflict
+      return function ( action_name, params, query ){
+        self.action( action_name, params, query );
+      };
     }
   });
 
