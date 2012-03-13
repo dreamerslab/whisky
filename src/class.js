@@ -3,7 +3,7 @@
  * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
- * @fileoverview
+ * @fileOverview
  * Simple JavaScript Inheritance
  * By John Resig http://ejohn.org/
  * MIT Licensed.
@@ -75,8 +75,6 @@
 
     return Class;
   };
-
-
 
   $$.Class = Class;
 })( this, WHISKY );
