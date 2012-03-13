@@ -3,7 +3,7 @@
  * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
- * @fileoverview
+ * @fileOverview
  * Logger for debugging. Use console.log if avaliable instead of alert.
  */
 
@@ -27,7 +27,7 @@
 
 /**
  * Log debugging msg and args.
- * @this {$$.Event}
+ * @this {$$.Log}
  * @param {String} module Module name.
  * @param {String} msg A message to be logged.
  * @param {Object} args An Object to be logged if it exists.
