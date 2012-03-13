@@ -3,7 +3,7 @@
  * Copyright(c) 2012 Tim Wood <momentjs.com>
  * MIT Licensed
  *
- * @fileoverview
+ * @fileOverview
  * Instance of $$.Trunk. Place to store app configs.
  * version : 1.4.0
  */
