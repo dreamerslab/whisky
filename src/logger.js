@@ -4,44 +4,51 @@
  * MIT Licensed
  *
  * @fileOverview
- * Logger for debugging. Use console.log if avaliable instead of alert.
+ * Logger for debugging. Use console.log instead of alert if it isavaliable.
  */
 
+$$( function ( require, exports ){
+
 /**
- * Setup Logger module in a closure
- * @this {window|global}
- * @param {Object} root The global object, window or global.
- * @param {Object} $$ WHISKY object.
- * @param {Object} $ jQuery or Zepto object.
+ * Module dependencies.
+ * @private
  */
-( function ( root, $$, $ ){
+  var config = require( 'config' );
+
+/**
+ * Short cut functions.
+ */
+  var json = root.JSON.stringify;
   var log = console && console.log ?
     console.log : alert;
 
-  var json = root.JSON.stringify;
-
-  if( $( '#whisky-config' ).attr( 'env' ) === 'prod' ){
+  if( config.env === 'prod' ){
     log  = function (){};
     json = function (){};
   }
 
 /**
  * Log debugging msg and args.
- * @this {$$.Log}
- * @param {String} module Module name.
+ * @public
+ * @this {logger}
  * @param {String} msg A message to be logged.
  * @param {Object} args An Object to be logged if it exists.
  * @example
  *
- *     $$.Log( 'Trunk', 'Class constructor first argument must a string or an object', {
+ *     log( 'WHISKY::Event.on( name, fn ) argument `name` must be a string', {
  *       key : key,
  *       val : val
  *     });
  */
-  $$.Log = function ( module, msg, args ){
+  var logger = function ( msg, args ){
     var args = args === undefined ?
       '' : '\nargs: ' + json( args );
 
-    log( '[WHISKY][' + module + ']\nmsg: ' + msg + args );
+    log( msg + args );
   };
-})( this, WHISKY, jQuery || Zepto );
+
+/**
+ * Exports module.
+ */
+  exports( 'log', logger );
+});
