@@ -4,49 +4,58 @@
  * MIT Licensed
  *
  * @fileOverview
- * Global events class.
+ * Controller class adaptor.
  */
 
-var Action = $$.Class.extend({
+$$( function ( require, exports ){
 
 /**
- * Setup an event trunk.
- * @constructor
- * @this {$$.Event}
- * @returns {this} Return `this` to enable chaining.
- * @example
- *
- *     var actions = new $$.Action();
+ * Module dependencies.
+ * @private
  */
-  init : function ( name, model, lang ){
-    name = $$.demodulize( name );
+  var Trunk    = require( 'Trunk' );
+  var Class    = require( 'Class' );
+  var Response = require( 'Response' );
+  var log      = require( 'logger' );
 
-    if( name.length === 1 ){
-      this._class = name[ 0 ];
+/**
+ * Store session data in a private object in the closure.
+ * Session can be used accross controllers and actions.
+ * @private
+ */
+  var session = {};
+
+
+/**
+ * Controller class adaptor.
+ * @public
+ */
+  var Controller = Trunk.extend({
+    get : function ( name , options ){
+      return ( function ( controller, res ){
+        return function ( action, params, query ){
+          var req = {
+            params : params,
+            query : query,
+            session : session
+          };
+
+          if( controller[ action ] === undefined ){
+            return log( 'WHISKY::controller.get( name, options )( action, params, query ) `action` not defined', {
+              action : action,
+              params : params,
+              query : query
+            });
+          }
+
+          controller[ action ]( req, res );
+        };
+      })( new Class.extend( this._super( name ))( options ), new Response( name ));
     }
+  });
 
-    if( name.length === 2 ){
-      this._module = name[ 0 ];
-      this._class  = name[ 1 ];
-    }
-
-    this._uid  = $$.uid( 32 );
-    this._type = 'action';
-    this.model = model;
-    this.lang  = lang;
-
-    return this;
-  }
+/**
+ * Exports module.
+ */
+  exports( 'controller', new Controller( 'WHISKY::controller' ));
 });
-
-
-$$.Action = function ( name, methods ){
-  var action, extend;
-
-  if( methods.extend ){
-    extend = methods.extend;
-    delete methods.extend;
-    action = Action.extend( trunk.get( extend ))
-  }
-
-};
