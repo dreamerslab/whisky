@@ -1,5 +1,4 @@
 # WHISKY
-
 Modularized client-side JavaScript framework
 
 
