@@ -3,7 +3,7 @@
  * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
- * @fileoverview
+ * @fileOverview
  * Initialize WHISKY with some helper functions.
  */
 
