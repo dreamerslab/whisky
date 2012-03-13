@@ -3,7 +3,7 @@
  * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
  * MIT Licensed
  *
- * @fileoverview
+ * @fileOverview
  * Instance of $$.Trunk. Place to store app configs.
  */
 

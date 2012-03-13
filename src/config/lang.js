@@ -1,10 +1,19 @@
+/*!
+ * WHISKY
+ * Copyright(c) 2012 Ben Lin <ben@dreamerslab.com>
+ * MIT Licensed
+ *
+ * @fileOverview
+ * Browser language detection
+ */
 $$.Config.set( 'lang', function (){
-  var lang = 'Unknown';
-
   if( navigator.language ){
-    lang = navigator.language;
-  }else if( navigator.browserLanguage ){
-    lang = navigator.browserLanguage;
+    return navigator.language;
   }
-  return lang;
+
+  if( navigator.browserLanguage ){
+    return navigator.browserLanguage;
+  }
+
+  return 'Unknown';
 }());
